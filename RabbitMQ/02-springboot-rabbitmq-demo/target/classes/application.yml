@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: springboot-rabbitmq-demo
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: lzhpo
+    password: 123456
