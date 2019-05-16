@@ -3,11 +3,11 @@
 [RabbitMQ超级详细教程](https://github.com/liuzhaopo/Queue/blob/master/RabbitMQ%E8%B6%85%E7%BA%A7%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.md)
 - [队列相关消息](http://www.liuzhaopo.top/article/35)
 - [RabbitMQ相关概念](http://www.liuzhaopo.top/article/36)
-- [安装RabbitMQ](http://www.liuzhaopo.top/article/37)
-- [RabbitMQ交换器](http://www.liuzhaopo.top/article/38)
-- [使用 RabbitMQ 实现松耦合设计](http://www.liuzhaopo.top/article/39)
-- [RabbitMQ消息处理](http://www.liuzhaopo.top/article/40)
-- [RabbitMQ六种消息模式](http://www.liuzhaopo.top/article/41)
+- [安装RabbitMQ](http://www.liuzhaopo.top/article/41)
+- [RabbitMQ交换器](http://www.liuzhaopo.top/article/37)
+- [使用 RabbitMQ 实现松耦合设计](http://www.liuzhaopo.top/article/38)
+- [RabbitMQ消息处理](http://www.liuzhaopo.top/article/39)
+- [RabbitMQ六种消息模式](http://www.liuzhaopo.top/article/40)
 
 ## Kafka超级详细教程
 [Kafka超级详细教程](https://github.com/liuzhaopo/Queue/blob/master/Kafka%E8%B6%85%E7%BA%A7%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.md)
