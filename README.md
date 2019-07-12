@@ -11,9 +11,9 @@
 
 ## Kafka超级详细教程
 [Kafka超级详细教程](https://github.com/liuzhaopo/Queue/blob/master/Kafka%E8%B6%85%E7%BA%A7%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.md)
-- [Kafka概述](http://www.liuzhaopo.top/article/29)
-- [安装Kafka](http://www.liuzhaopo.top/article/30)
-- [Kafka相关命令操作](http://www.liuzhaopo.top/article/31)
-- [Java操作Kafka](http://www.liuzhaopo.top/article/32)
-- [Kafka Streams以及数据清洗案例](http://www.liuzhaopo.top/article/33)
-- [SpringBoot集成Kafka](http://www.liuzhaopo.top/article/34)
+- [Kafka概述](http://www.lzhpo.com/article/15)
+- [安装Kafka](http://www.lzhpo.com/article/16)
+- [Kafka相关命令操作](http://www.lzhpo.com/article/17)
+- [Java操作Kafka](http://www.lzhpo.com/article/18)
+- [Kafka Streams以及数据清洗案例](http://www.lzhpo.com/article/19)
+- [SpringBoot集成Kafka](http://www.lzhpo.com/article/20)
