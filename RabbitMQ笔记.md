@@ -1,3 +1,5 @@
+# RabbitMQ笔记
+
 ## 队列相关消息
 
 ### 1.Provider
@@ -10,11 +12,11 @@
 
 ### 3.没有使用消息队列时消息传递方式
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-noqueue.png)
+![](http://cdn.lzhpo.com/RabbitMQ-noqueue.png)
 
 ### 4.使用消息队列后消息传递方式
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-havequeue.png)
+![](http://cdn.lzhpo.com/RabbitMQ-havequeue.png)
 
 ### 5.什么是队列？
 
@@ -50,10 +52,9 @@
 
 交换器。用来接收生产者发送的消息并将这些消息路由给服务器中的队列。
 三种常用的交换器类型
-
-1.  direct(发布与订阅 完全匹配)
-2.  fanout(广播)
-3.  topic(主题，规则匹配)
+1. direct(发布与订阅 完全匹配)
+2. fanout(广播)
+3. topic(主题，规则匹配)
 
 ### 5.Binding
 
@@ -108,12 +109,12 @@ RabbitMQ 默认的 vhost 是/
 
 ### 13.RabbitMQ 为什么需要信道？为什么不是 TCP 直接通信？
 
-1.  TCP 的创建和销毁开销特别大。创建需要 3 次握手，销毁需要 4 次分手。
-2.  如果不用信道，那应用程序就会以 TCP 链接 Rabbit，高峰时每秒成千上万条链接
-    会造成资源巨大的浪费，而且操作系统每秒处理 TCP 链接数也是有限制的，必定造成性能
-    瓶颈。
-3.  信道的原理是一条线程一条通道，多条线程多条通道同用一条 TCP 链接。一条 TCP
-    链接可以容纳无限的信道，即使每秒成千上万的请求也不会成为性能的瓶颈。
+1. TCP 的创建和销毁开销特别大。创建需要 3 次握手，销毁需要 4 次分手。
+2. 如果不用信道，那应用程序就会以 TCP 链接 Rabbit，高峰时每秒成千上万条链接
+会造成资源巨大的浪费，而且操作系统每秒处理 TCP 链接数也是有限制的，必定造成性能
+瓶颈。
+3. 信道的原理是一条线程一条通道，多条线程多条通道同用一条 TCP 链接。一条 TCP
+链接可以容纳无限的信道，即使每秒成千上万的请求也不会成为性能的瓶颈。
 
 
 
@@ -135,7 +136,6 @@ RabbitMQ 默认的 vhost 是/
 -   安装wget：`yum -y install wget`
 
 -   安装EPEL库：
-
     -   ```shell
         wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
         
@@ -189,18 +189,54 @@ RabbitMQ 默认的 vhost 是/
 
 ### Docker
 
-参考我写的博客[http://www.liuzhaopo.top/article/18#menu_6](http://www.liuzhaopo.top/article/18#menu_6)
+**使用docker镜像中国下载Rabbitmq镜像，选择带有management的，因为这个是有WEB界面：**
+
+```shell
+#使用docker镜像中国下载Rabbitmq镜像，选择带有management的，因为这个是有WEB界面。
+[root@docker ~]# docker pull registry.docker-cn.com/library/rabbitmq:3.7-management
+```
+
+![](http://cdn.lzhpo.com/Docker-docker-hub-rabbitmq-1.png)
+
+**选择官方的：**
+
+![](http://cdn.lzhpo.com/Docker-docker-hub-rabbitmq-2.png)
+
+**我选择的是这个3.7版本：**
+
+![](http://cdn.lzhpo.com/Docker-docker-hub-rabbitmq-3.png)
+
+```shell
+#查看镜像
+[root@docker ~]# docker images
+REPOSITORY                                TAG                 IMAGE ID            CREATED             SIZE
+registry.docker-cn.com/library/rabbitmq   3.7-management      24cb552c7c00        12 days ago         212 MB
+
+#运行容器
+[root@docker ~]# docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq 24cb552c7c00
+#查看进程
+[root@docker ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                                                                        NAMES
+73943a64f336        24cb552c7c00        "docker-entrypoint..."   7 minutes ago       Up 7 minutes        4369/tcp, 5671/tcp, 0.0.0.0:5672->5672/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp   rabbitmq
+[root@docker ~]# 
+
+#关闭防火墙设置开机不启动
+[root@docker ~]# systemctl stop firewalld
+[root@docker ~]# systemctl disable firewalld
+```
+
+**此时就可以登录Rabbitmq的WEB界面了，访问地址是[ip:15672]默认用户名和密码都是guest。**
+
+![](http://cdn.lzhpo.com/RabbitMQ-rabbitmq-login.png)
 
 ## RabbitMQ交换器
 
 ### Direct交换器
-
 >   发布与订阅，完全匹配。
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-Direct%E4%BA%A4%E6%8D%A2%E5%99%A8.png)
+![](http://cdn.lzhpo.com/RabbitMQ-Direct%E4%BA%A4%E6%8D%A2%E5%99%A8.png)
 
 #### 生产者
-
 ##### pom.xml
 
 ```powershell
@@ -252,7 +288,6 @@ RabbitMQ 默认的 vhost 是/
 
 </project>
 ```
-
 ##### application.properties
 
 ```properties
@@ -270,7 +305,6 @@ mq.config.queue.error.routing.key=log.error.routing.key
 #error 队列名称
 mq.config.queue.error=log.error
 ```
-
 ##### Sender
 
 ```java
@@ -311,9 +345,7 @@ public class Sender {
 	}
 }
 
-
 ```
-
 ##### RabbitmqDirectProviderApplicationTests测试类
 
 ```java
@@ -345,11 +377,9 @@ public class RabbitmqDirectProviderApplicationTests {
     }
 
 }
-
 ```
 
 #### 消费者
-
 ##### pom.xml和生产者的一样。
 
 ##### application.properties
@@ -370,9 +400,7 @@ mq.config.queue.info.routing.key=log.info.routing.key
 mq.config.queue.error=log.error
 #error 路由键
 mq.config.queue.error.routing.key=log.error.routing.key
-
 ```
-
 ##### ErrorReceiver
 
 ```java
@@ -418,9 +446,7 @@ public class ErrorReceiver {
 		System.out.println("Error..........receiver: "+msg);
 	}
 }
-
 ```
-
 ##### InfoReceiver
 
 ```java
@@ -466,9 +492,7 @@ public class InfoReceiver {
 		System.out.println("Info........receiver: "+msg);
 	}
 }
-
 ```
-
 ##### Main
 
 ```java
@@ -485,14 +509,13 @@ public class RabbitmqDirectConsumerApplication {
     }
 
 }
-
 ```
 
 #### 测试结果
 
 先启动消费者，再运行生产者的测试类`RabbitmqDirectProviderApplicationTests`测试类。
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-Direct%E4%BA%A4%E6%8D%A2%E5%99%A8%E6%B5%8B%E8%AF%95.png)
+![](http://cdn.lzhpo.com/RabbitMQ-Direct%E4%BA%A4%E6%8D%A2%E5%99%A8%E6%B5%8B%E8%AF%95.png)
 
 
 
@@ -500,7 +523,7 @@ public class RabbitmqDirectConsumerApplication {
 
 >   主题，规则匹配。
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-Topic%E4%BA%A4%E6%8D%A2%E5%99%A8.png)
+![](http://cdn.lzhpo.com/RabbitMQ-Topic%E4%BA%A4%E6%8D%A2%E5%99%A8.png)
 
 #### 生产者
 
@@ -513,7 +536,6 @@ spring.rabbitmq.username=guest
 spring.rabbitmq.password=guest
 #设置交换器的名称
 mq.config.exchange=log.topic
-
 ```
 
 ##### OrderSender
@@ -555,7 +577,6 @@ public class OrderSender {
 		this.rabbitAmqpTemplate.convertAndSend(this.exchange,"order.log.error", "order.log.error....."+msg);
 	}
 }
-
 ```
 
 ##### ProductSender
@@ -597,7 +618,6 @@ public class ProductSender {
 		this.rabbitAmqpTemplate.convertAndSend(this.exchange,"product.log.error", "product.log.error....."+msg);
 	}
 }
-
 ```
 
 ##### UserSender
@@ -639,7 +659,6 @@ public class UserSender {
 		this.rabbitAmqpTemplate.convertAndSend(this.exchange,"user.log.error", "user.log.error....."+msg);
 	}
 }
-
 ```
 
 ##### RabbitmqTopicProviderApplicationTests测试类
@@ -677,7 +696,6 @@ public class RabbitmqTopicProviderApplicationTests {
     }
 
 }
-
 ```
 
 #### 消费者
@@ -697,7 +715,6 @@ mq.config.queue.info=log.info
 mq.config.queue.error=log.error
 #log 队列名称
 mq.config.queue.logs=log.all
-
 ```
 
 ##### ErrorReceiver
@@ -745,7 +762,6 @@ public class ErrorReceiver {
 		System.out.println("......Error........receiver: "+msg);
 	}
 }
-
 ```
 
 ##### InfoReceiver
@@ -793,7 +809,6 @@ public class InfoReceiver {
 		System.out.println("......Info........receiver: "+msg);
 	}
 }
-
 ```
 
 ##### LogsReceiver
@@ -841,7 +856,6 @@ public class LogsReceiver {
 		System.out.println("......All........receiver: "+msg);
 	}
 }
-
 ```
 
 ##### Main
@@ -860,14 +874,13 @@ public class RabbitmqTopicConsumerApplication {
     }
 
 }
-
 ```
 
 #### 测试结果
 
 先启动消费者，然后再运行`RabbitmqTopicProviderApplicationTests`测试类。
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-Topic%E4%BA%A4%E6%8D%A2%E5%99%A8%E6%B5%8B%E8%AF%95.png)
+![](http://cdn.lzhpo.com/RabbitMQ-Topic%E4%BA%A4%E6%8D%A2%E5%99%A8%E6%B5%8B%E8%AF%95.png)
 
 
 
@@ -875,9 +888,9 @@ public class RabbitmqTopicConsumerApplication {
 
 >   广播。
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-Fanout%E4%BA%A4%E6%8D%A2%E5%99%A81.png)
+![](http://cdn.lzhpo.com/RabbitMQ-Fanout%E4%BA%A4%E6%8D%A2%E5%99%A81.png)
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-Fanout%E4%BA%A4%E6%8D%A2%E5%99%A82.png)
+![](http://cdn.lzhpo.com/RabbitMQ-Fanout%E4%BA%A4%E6%8D%A2%E5%99%A82.png)
 
 #### 生产者
 
@@ -890,7 +903,6 @@ spring.rabbitmq.username=guest
 spring.rabbitmq.password=guest
 #设置交换器的名称
 mq.config.exchange=order.fanout
-
 ```
 
 ##### Sender
@@ -927,7 +939,6 @@ public class Sender {
 				msg);
 	}
 }
-
 ```
 
 ##### RabbitmqFanoutProviderApplicationTests测试类
@@ -961,7 +972,6 @@ public class RabbitmqFanoutProviderApplicationTests {
     }
 
 }
-
 ```
 
 #### 消费者
@@ -979,7 +989,6 @@ mq.config.exchange=order.fanout
 mq.config.queue.sms=order.sms
 #push 服务队列名称
 mq.config.queue.push=order.push
-
 ```
 
 ##### SmsReceiver
@@ -1027,7 +1036,6 @@ public class SmsReceiver {
 		System.out.println("Sms........receiver: "+msg);
 	}
 }
-
 ```
 
 ##### PushReceiver
@@ -1074,7 +1082,6 @@ public class PushReceiver {
 		System.out.println("Error..........receiver: "+msg);
 	}
 }
-
 ```
 
 ##### Main
@@ -1093,22 +1100,21 @@ public class RabbitmqFanoutConsumerApplication {
     }
 
 }
-
 ```
 
 #### 测试结果
 
 先启动消费者，然后再启动生产者`RabbitmqFanoutProviderApplicationTests`测试类。
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-Fanout%E4%BA%A4%E6%8D%A2%E5%99%A8%E6%B5%8B%E8%AF%95.png)
+![](http://cdn.lzhpo.com/RabbitMQ-Fanout%E4%BA%A4%E6%8D%A2%E5%99%A8%E6%B5%8B%E8%AF%95.png)
 
 
 
-### 使用 RabbitMQ 实现松耦合设计
+## 使用 RabbitMQ 实现松耦合设计
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-Fanout-OuHe.png)
+![](http://cdn.lzhpo.com/RabbitMQ-Fanout-OuHe.png)
 
-#### 生产者
+### 生产者
 
 ##### application.properties
 
@@ -1119,7 +1125,6 @@ spring.rabbitmq.username=guest
 spring.rabbitmq.password=guest
 
 mq.config.exchange=order.fanout
-
 ```
 
 ##### Sender
@@ -1158,7 +1163,6 @@ public class Sender {
         this.rabbitAmqpTemplate.convertAndSend(this.exchange,"", msg);
     }
 }
-
 ```
 
 ##### RabbitmqFanoutOuheProviderApplicationTests测试类
@@ -1188,10 +1192,9 @@ public class RabbitmqFanoutOuheProviderApplicationTests {
     }
 
 }
-
 ```
 
-#### 消费者
+### 消费者
 
 ##### application.properties
 
@@ -1208,7 +1211,6 @@ mq.config.queue.sms=order.sms
 mq.config.queue.push=order.push
 
 mq.config.queue.red=red
-
 ```
 
 
@@ -1257,7 +1259,6 @@ public class PushReceiver {
 		System.out.println("Push..........receiver: "+msg);
 	}
 }
-
 ```
 
 ##### RedReceiver
@@ -1305,7 +1306,6 @@ public class RedReceiver {
 		System.out.println("给用户发送10元红包........receiver: "+msg);
 	}
 }
-
 ```
 
 ##### SmsReceiver
@@ -1353,7 +1353,6 @@ public class SmsReceiver {
 		System.out.println("Sms........receiver: "+msg);
 	}
 }
-
 ```
 
 ##### Main
@@ -1372,24 +1371,23 @@ public class RabbitmqFanoutOuheConsumerApplication {
     }
 
 }
-
 ```
 
 #### 测试结果
 
 先运行消费者，然后再运行生产者的`RabbitmqFanoutOuheProviderApplicationTests`测试类。
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-Fanout-OuHe%E6%B5%8B%E8%AF%95.png)
+![](http://cdn.lzhpo.com/RabbitMQ-Fanout-OuHe%E6%B5%8B%E8%AF%95.png)
 
 
 
-### RabbitMQ消息处理
+## RabbitMQ消息处理
 
 >   消息的可靠性是 RabbitMQ 的一大特色，那么 RabbitMQ 是如何保证消息可靠性的呢——消息持久化。
 
-#### RabbitMQ的消息持久化处理
+### RabbitMQ的消息持久化处理
 
-##### 生产者
+#### 生产者
 
 ###### application.properties
 
@@ -1406,7 +1404,6 @@ mq.config.queue.info.routing.key=log.info.routing.key
 mq.config.queue.error.routing.key=log.error.routing.key
 
 mq.config.queue.error=log.error
-
 ```
 
 ###### Sender
@@ -1448,7 +1445,6 @@ public class Sender {
 		this.rabbitAmqpTemplate.convertAndSend(this.exchange, this.routingkey, msg);
 	}
 }
-
 ```
 
 ###### RabbitmqDurableDirectProviderApplicationTests测试类
@@ -1483,10 +1479,9 @@ public class RabbitmqDurableDirectProviderApplicationTests {
     }
 
 }
-
 ```
 
-##### 消费者
+#### 消费者
 
 ###### application.properties
 
@@ -1505,7 +1500,6 @@ mq.config.queue.info.routing.key=log.info.routing.key
 mq.config.queue.error=log.error
 
 mq.config.queue.error.routing.key=log.error.routing.key
-
 
 ```
 
@@ -1554,7 +1548,6 @@ public class ErrorReceiver {
 		System.out.println("Error..........receiver: "+msg);
 	}
 }
-
 ```
 
 ###### InfoReceiver
@@ -1602,7 +1595,6 @@ public class InfoReceiver {
 		System.out.println("Info........receiver: "+msg);
 	}
 }
-
 ```
 
 ###### Main
@@ -1621,16 +1613,15 @@ public class RabbitmqDurableDirectConsumerApplication {
     }
 
 }
-
 ```
 
 ##### 测试结果
 
 先启动消费者，再运行`RabbitmqDurableDirectProviderApplicationTests`测试类。
 
-![](http://cdn.liuzhaopo.top/Rabbitmq-%E6%B6%88%E6%81%AF%E6%8C%81%E4%B9%85%E5%8C%96.png)
+![](http://cdn.lzhpo.com/RabbitMQ-%E6%B6%88%E6%81%AF%E6%8C%81%E4%B9%85%E5%8C%96.png)
 
-#### RabbitMQ中的消息确认ACK机制
+### RabbitMQ中的消息确认ACK机制
 
 >   什么是消息确认ACK？
 
@@ -1659,10 +1650,7 @@ ACK机制是消费者从RabbitMQ手到消息并处理完成后，反馈给Rabbit
 spring.rabbitmq.listener.retry.enabled=true
 #重试次数，默认为 3 次
 spring.rabbitmq.listener.retry.max-attempts=5
-
 ```
-
-
 
 ## RabbitMQ六种消息模式
 
@@ -1752,7 +1740,7 @@ public class ConnectionUtils {
 
 >   简单队列：一个生产者P发送消息到队列Q,一个消费者C接收。
 
-![](http://cdn.liuzhaopo.top/simple-queue.png)
+![](http://cdn.lzhpo.com/RabbitMQ-simple-queue.png)
 
 #### 生产者(Send)
 
@@ -1883,7 +1871,7 @@ public class Recv {
 
 >   【轮询分发】：结果就是不管谁忙或清闲，都不会给谁多一个任务或少一个任务，任务总是你一个我一个的分。
 
-![](http://cdn.liuzhaopo.top/work-queues.png)
+![](http://cdn.lzhpo.com/RabbitMQ-work-queues.png)
 
 ##### 生产者(Send)
 
@@ -2288,7 +2276,9 @@ public class Recv2 {
 >   4.  每个队列都要绑定到交换机上。
 >   5.  生产者发送的消息经过交换机到达队列，就能实现一个消息被多个消费者消费。
 
-![](http://cdn.liuzhaopo.top/subscribe-model.png)
+![](http://cdn.lzhpo.com/RabbitMQ-subscribe-model.png)
+
+![](http://cdn.lzhpo.com/RabbitMQ-subscribe-model.png)
 
 #### 生产者(Send)
 
@@ -2459,7 +2449,7 @@ public class Recv2 {
 >   1.  发送消息到交换机并且要指定路由key 。
 >   2.  消费者将队列绑定到交换机时需要指定路由key。
 
-![](http://cdn.liuzhaopo.top/routing-model.png)
+![](http://cdn.lzhpo.com/RabbitMQ-routing-model.png)
 
 #### 生产者(Send)
 
@@ -2624,7 +2614,7 @@ public class Recv2 {
 
 >   Topic主题模式：将路由键和某模式进行匹配，此时队列需要绑定在一个模式上，“#”匹配一个词或多个词，“*”只匹配一个词。
 
-![](http://cdn.liuzhaopo.top/topic-model.png)
+![](http://cdn.lzhpo.com/RabbitMQ-topic-model.png)
 
 #### 生产者(Send)
 
@@ -2779,7 +2769,9 @@ public class Recv2 {
 
 >   前面学习了如何使用work队列在多个worker之间分配任务，但是如果需要在远程机器上运行个函数并等待结果，就需要使用RPC（远程过程调用）模式来实现。
 
-![](http://cdn.liuzhaopo.top/rpc.png)
+![](http://cdn.lzhpo.com/RabbitMQ-rpc.png)
 
 参考官网教程【模拟RPC服务来返回斐波那契数列】：[https://www.rabbitmq.com/tutorials/tutorial-six-java.html](https://www.rabbitmq.com/tutorials/tutorial-six-java.html)
+
+
 

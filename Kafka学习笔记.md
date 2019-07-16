@@ -17,9 +17,9 @@
 
 ### Kafka架构以及相关概念
 
-![](http://cdn.liuzhaopo.top/Kafka%E6%9E%B6%E6%9E%84.png)
+![](http://cdn.lzhpo.com/Kafka%E6%9E%B6%E6%9E%84.png)
 
-![](http://cdn.liuzhaopo.top/Kafka%E6%9E%B6%E6%9E%842.png)
+![](http://cdn.lzhpo.com/Kafka%E6%9E%B6%E6%9E%842.png)
 
 1.  Producer ：消息生产者，就是向kafka broker发消息的客户端；
 
@@ -82,7 +82,7 @@ public int partition(String topic, Object key, byte[] keyBytes, Object value, by
 
 #### Kafka写入流程
 
-![](http://cdn.liuzhaopo.top/Kafka%E5%86%99%E5%85%A5%E6%B5%81%E7%A8%8B.png)
+![](http://cdn.lzhpo.com/Kafka%E5%86%99%E5%85%A5%E6%B5%81%E7%A8%8B.png)
 
 1.  producer先从zookeeper的 "/brokers/.../state"节点找到该partition的leader
 
@@ -112,7 +112,7 @@ public int partition(String topic, Object key, byte[] keyBytes, Object value, by
 
 ##### Zookeeper存储结构
 
-![](http://cdn.liuzhaopo.top/Zookeeper%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84.png)
+![](http://cdn.lzhpo.com/Kafka-Zookeeper%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84.png)
 
 注意：producer不在zk中注册，消费者在zk中注册。
 
@@ -784,13 +784,13 @@ kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic fi
 
 Java控制台：
 
-![](http://cdn.liuzhaopo.top/Kafka%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A81.png)
+![](http://cdn.lzhpo.com/Kafka%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A81.png)
 
 Kafka中的消费者：
 
-![](http://cdn.liuzhaopo.top/Kafka%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A82.png)
+![](http://cdn.lzhpo.com/Kafka%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%A6%E6%88%AA%E5%99%A82.png)
 
-## Kafka Streams
+## Kafka Streams以及数据清洗小案例
 
 ### Kafka Streams 概述
 
@@ -940,7 +940,7 @@ public class APP {
 
 让APP一直保持运行：
 
-![](http://cdn.liuzhaopo.top/Kafka-Streams%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97-Java-console.png)
+![](http://cdn.lzhpo.com/Kafka-Streams%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97-Java-console.png)
 
 开启一个生产者（定义输入的topic）：
 
@@ -950,7 +950,7 @@ kafka-console-producer.sh --broker-list localhost:9092 --topic first
 
 发送消息
 
-![](http://cdn.liuzhaopo.top/Kafka-Streams%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97-Provider.png)
+![](http://cdn.lzhpo.com/Kafka-Streams%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97-Provider.png)
 
 开启一个消费者（定义输出的topic）：
 
@@ -960,7 +960,7 @@ kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic se
 
 Consumer接收到的消息：
 
-![](http://cdn.liuzhaopo.top/Kafka-Streams%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97-Consumer.png)
+![](http://cdn.lzhpo.com/Kafka-Streams%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97-Consumer.png)
 
 可以看到：
 
@@ -1183,4 +1183,4 @@ public class SpringbootKafkaDemoApplication {
 
 ### 运行结果
 
-![](http://cdn.liuzhaopo.top/SpringBoot%E9%9B%86%E6%88%90kafka-demo.png)
+![](http://cdn.lzhpo.com/Kafka-SpringBoot%E9%9B%86%E6%88%90kafka-demo.png)
