@@ -13,5 +13,5 @@
 - [安装Kafka](http://www.lzhpo.com/article/11)
 - [Kafka相关命令操作](http://www.lzhpo.com/article/12)
 - [Java操作Kafka](http://www.lzhpo.com/article/13)
-- [Kafka Streams以及数据清洗案例](http://www.lzhpo.com/article/14)
+- [Kafka Streams以及数据清洗小案例](http://www.lzhpo.com/article/14)
 - [SpringBoot集成Kafka](http://www.lzhpo.com/article/15)
