@@ -15,3 +15,9 @@
 - [Java操作Kafka](http://www.lzhpo.com/article/13)
 - [Kafka Streams以及数据清洗小案例](http://www.lzhpo.com/article/14)
 - [SpringBoot集成Kafka](http://www.lzhpo.com/article/15)
+
+## 请本人喝杯咖啡
+### 支付宝
+![](http://cdn.lzhpo.com/Aurora-%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%B6%E6%AC%BE%E7%A0%81.png)
+### 微信
+![](http://cdn.lzhpo.com/Aurora-%E5%BE%AE%E4%BF%A1%E6%94%B6%E6%AC%BE%E7%A0%81.png)
