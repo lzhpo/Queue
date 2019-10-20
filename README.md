@@ -1,3 +1,11 @@
+
+![](https://img.shields.io/badge/author-会打篮球的程序猿-red)
+![](https://img.shields.io/badge/license-GPL%20v3-success.svg)
+
+RabbitMQ和Kafka超级详细教程
+
+<hr>
+
 ## RabbitMQ超级详细教程
 
 [RabbitMQ超级详细教程](https://github.com/lzhpo/Queue/blob/master/RabbitMQ%E7%AC%94%E8%AE%B0.md)
