@@ -14,7 +14,7 @@ RabbitMQ和Kafka超级详细教程
 
 [RabbitMQ超级详细教程](https://github.com/lzhpo/Queue/blob/master/RabbitMQ%E7%AC%94%E8%AE%B0.md)
 
-- [队列相关消息](http://www.lzhpo.com/article/3)
+- [队列相关](http://www.lzhpo.com/article/3)
 - [RabbitMQ相关概念](http://www.lzhpo.com/article/4)
 - [安装RabbitMQ](http://www.lzhpo.com/article/5)
 - [RabbitMQ交换器](http://www.lzhpo.com/article/6)
