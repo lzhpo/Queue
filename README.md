@@ -31,7 +31,7 @@ RabbitMQ和Kafka超级详细教程
 - [Kafka Streams以及数据清洗小案例](http://www.lzhpo.com/article/14)
 - [SpringBoot集成Kafka](http://www.lzhpo.com/article/15)
 
-### 请本人喝杯咖啡
+## 请本人喝杯咖啡
 
 喜欢的话，先star，然后可以小额打赏一下哈~
 
