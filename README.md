@@ -37,5 +37,6 @@ RabbitMQ和Kafka超级详细教程
 
 | 支付宝                                                       | 微信                                                 |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
-| ![](http://file.lzhpo.com/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%B6%E6%AC%BE%E7%A0%81.png) | ![](http://file.lzhpo.com/%E5%BE%AE%E4%BF%A1%E6%94%B6%E6%AC%BE%E7%A0%81.png) |
+| <img width="200" height="200" src="http://file.lzhpo.com/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%B6%E6%AC%BE%E7%A0%81.png"/> | <img width="200" height="200" src="http://file.lzhpo.com/%E5%BE%AE%E4%BF%A1%E6%94%B6%E6%AC%BE%E7%A0%81.png"/> |
+
 
