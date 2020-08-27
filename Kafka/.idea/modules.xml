@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/01-kafka-easycode/01-kafka-easycode.iml" filepath="$PROJECT_DIR$/01-kafka-easycode/01-kafka-easycode.iml" />
-      <module fileurl="file://$PROJECT_DIR$/02-springboot-kafka-demo/02-springboot-kafka-demo.iml" filepath="$PROJECT_DIR$/02-springboot-kafka-demo/02-springboot-kafka-demo.iml" />
-    </modules>
-  </component>
-</project>
